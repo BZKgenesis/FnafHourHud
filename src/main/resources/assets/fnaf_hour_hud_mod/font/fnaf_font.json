@@ -1,0 +1,11 @@
+{
+  "providers": [
+    {
+      "type": "ttf",
+      "file": "fnaf_hour_hud_mod:fnaf_font.ttf",
+      "shift": [0, 0],
+      "size": 20,
+      "oversample": 2.0
+    }
+  ]
+}
