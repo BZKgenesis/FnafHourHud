@@ -11,9 +11,9 @@ public class ModNetwork {
     public static void init() {
         CHANNEL = NetworkRegistry.newSimpleChannel(
                 new ResourceLocation(FnafHourHudMod.MOD_ID, "network"),
-                () -> PROTOCOL,
-                PROTOCOL::equals,
-                PROTOCOL::equals
+                () -> "1",
+                s->true,
+                s->true
         );
 
         int id = 0;

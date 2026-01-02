@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -21,7 +22,7 @@ public class FnafHourHudMod {
 
     public FnafHourHudMod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModNetwork.init();
+        modEventBus.addListener(this::commonSetup);
 
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -32,6 +33,10 @@ public class FnafHourHudMod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(ModNetwork::init);
     }
 
 

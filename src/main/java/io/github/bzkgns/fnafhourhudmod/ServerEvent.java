@@ -43,9 +43,13 @@ public class ServerEvent {
         if (enableValue == enableLast && timeValue == timeLast) return;
         LAST_VALUE.put(enableName, enableValue);
         LAST_VALUE.put(timeName, timeValue);
-        ModNetwork.CHANNEL.send(
-                PacketDistributor.PLAYER.with(() -> player),
-                new ScoreSyncPacket(enableValue,timeValue)
-        );
+        //TODO: faire les choses bien pour que chaque client est sa propre update
+        for (ServerPlayer sp : player.getServer().getPlayerList().getPlayers()) {
+            if (sp == null) continue;
+            ModNetwork.CHANNEL.send(
+                    PacketDistributor.PLAYER.with(() -> sp),
+                    new ScoreSyncPacket(enableValue,timeValue)
+            );
+        }
     }
 }
