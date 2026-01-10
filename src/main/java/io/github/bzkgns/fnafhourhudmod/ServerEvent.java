@@ -11,13 +11,15 @@ import net.minecraftforge.network.PacketDistributor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(
         modid = FnafHourHudMod.MOD_ID,
         bus = Mod.EventBusSubscriber.Bus.FORGE
 )
 public class ServerEvent {
-    private static final Map<String, Integer> LAST_VALUE = new HashMap<>();
+    private static final Map<UUID, Integer> LAST_ENABLE = new HashMap<>();
+    private static final Map<UUID, Integer> LAST_TIME = new HashMap<>();
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -32,24 +34,21 @@ public class ServerEvent {
 
         String enableName = "isEnabled";
         Score enableScore = scoreboard.getOrCreatePlayerScore(enableName, obj);
+        UUID id = player.getUUID();
         int enableValue = enableScore.getScore();
-        int enableLast = LAST_VALUE.getOrDefault(enableName, Integer.MIN_VALUE);
+        int enableLast = LAST_ENABLE.getOrDefault(id, Integer.MIN_VALUE);
 
         String timeName = "time";
         Score timeScore = scoreboard.getOrCreatePlayerScore(timeName, obj);
         int timeValue = timeScore.getScore();
-        int timeLast = LAST_VALUE.getOrDefault(timeName, Integer.MIN_VALUE);
+        int timeLast = LAST_TIME.getOrDefault(id, Integer.MIN_VALUE);
 
         if (enableValue == enableLast && timeValue == timeLast) return;
-        LAST_VALUE.put(enableName, enableValue);
-        LAST_VALUE.put(timeName, timeValue);
-        //TODO: faire les choses bien pour que chaque client est sa propre update
-        for (ServerPlayer sp : player.getServer().getPlayerList().getPlayers()) {
-            if (sp == null) continue;
-            ModNetwork.CHANNEL.send(
-                    PacketDistributor.PLAYER.with(() -> sp),
-                    new ScoreSyncPacket(enableValue,timeValue)
-            );
-        }
+        LAST_ENABLE.put(id, enableValue);
+        LAST_TIME.put(id, timeValue);
+        ModNetwork.CHANNEL.send(
+                PacketDistributor.PLAYER.with(() -> player),
+                new ScoreSyncPacket(enableValue, timeValue)
+        );
     }
 }
