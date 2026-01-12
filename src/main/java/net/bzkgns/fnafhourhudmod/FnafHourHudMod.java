@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-@Mod(io.github.bzkgns.fnafhourhudmod.FnafHourHudMod.MOD_ID)
+@Mod(net.bzkgns.fnafhourhudmod.FnafHourHudMod.MOD_ID)
 public class FnafHourHudMod {
     public static final String MOD_ID = "fnaf_hour_hud_mod";
     public static final Logger LOGGER = LogUtils.getLogger();

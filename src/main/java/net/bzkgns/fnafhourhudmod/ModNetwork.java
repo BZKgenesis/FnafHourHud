@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;

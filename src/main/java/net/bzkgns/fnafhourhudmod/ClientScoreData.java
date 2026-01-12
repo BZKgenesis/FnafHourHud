@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 public class ClientScoreData {
     private static int isEnabled = 0;

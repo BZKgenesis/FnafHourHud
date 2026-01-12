@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;

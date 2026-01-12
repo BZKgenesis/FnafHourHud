@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.scores.Objective;

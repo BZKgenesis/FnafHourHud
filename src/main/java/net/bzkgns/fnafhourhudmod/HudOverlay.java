@@ -1,4 +1,4 @@
-package io.github.bzkgns.fnafhourhudmod;
+package net.bzkgns.fnafhourhudmod;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static io.github.bzkgns.fnafhourhudmod.FnafHourHudMod.FNAF_FONT;
+import static net.bzkgns.fnafhourhudmod.FnafHourHudMod.FNAF_FONT;
 
 @Mod.EventBusSubscriber(
         modid = FnafHourHudMod.MOD_ID,
